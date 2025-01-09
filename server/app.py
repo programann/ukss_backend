@@ -4,18 +4,18 @@ from flask_cors import CORS
 from auth import jwt, bcrypt
 from models import db
 from admin import admin_bp
+from config import Config
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8321ce6cc7de4184bf491894345e73b0'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///school.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
 
-# CORS settings (adjust origin as needed)
+# Load Configurations
+app.config.from_object(Config)
+
+# CORS settings
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
 
 # Register Blueprints
