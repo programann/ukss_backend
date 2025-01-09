@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "8321ce6cc7de4184bf491894345e73b0")
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///school.db")
